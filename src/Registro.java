@@ -28,7 +28,7 @@ public class Registro {
 
            Pessoa pessoa = new Pessoa(nome, cpf, salario, metaGastos);
            listaPessoa.add(pessoa);
-
+           salvarPessoa(pessoa);
 
 
        } catch (Exception e) {
@@ -96,7 +96,7 @@ public class Registro {
         }
 
         public void salvarPessoa(Pessoa pessoa){
-            String url = "INSERT INTO pessoa (nome, cpf, forma, salario, metaGastos) VALUES (?,?,?,?)";
+            String url = "INSERT INTO pessoa (nome, cpf, salario, metagasto) VALUES (?,?,?,?)";
             try(Connection c = ConexaoDB.conectar(); PreparedStatement stmt = c.prepareStatement(url)) {
                 stmt.setString(1, pessoa.getNome());
                 stmt.setString(2, pessoa.getCpf());
