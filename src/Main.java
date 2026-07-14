@@ -9,10 +9,13 @@ public class Main {
        do {
            Scanner sc = new Scanner(System.in);
            System.out.println("Qual operação deseja realizar?");
-           System.out.println("[1] - Inserir gasto\n[2] - Realizar consultas\n[3] - Sair");
+           System.out.println("[0] - Cadastrar pessoa\n[1] - Inserir gasto\n[2] - Realizar consultas\n[3] - Sair");
            op = sc.nextInt();
 
            switch (op) {
+               case 0:
+                   registro.registrarPessoa();
+                   break;
                case 1:
                    registro.registraDados();
                    break;

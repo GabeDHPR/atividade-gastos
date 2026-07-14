@@ -9,6 +9,31 @@ import java.util.Scanner;
 public class Registro {
     private ArrayList<Gasto> listaGastos = new ArrayList<>();
 
+    private ArrayList<Pessoa> listaPessoa = new ArrayList<>();
+
+    public void registrarPessoa(){
+       try{
+           Scanner sc = new Scanner(System.in);
+           System.out.print("Digite o nome: ");
+           String nome = sc.nextLine();
+
+           System.out.print("Digite o CPF: ");
+           String cpf = sc.nextLine();
+
+           System.out.print("Digite o sálario: ");
+           BigDecimal salario = sc.nextBigDecimal();
+
+           System.out.println("Digite a meta de gastos: ");
+           BigDecimal metaGastos = sc.nextBigDecimal();
+
+           Pessoa pessoa = new Pessoa(nome, cpf, salario, metaGastos);
+           listaPessoa.add(pessoa);
+
+
+
+       } catch (Exception e) {
+       }
+       }
 
     public void registraDados(){
         try {
@@ -68,6 +93,25 @@ public class Registro {
             e.printStackTrace();
         }
 
+        }
+
+        public void salvarPessoa(Pessoa pessoa){
+            String url = "INSERT INTO pessoa (nome, cpf, forma, salario, metaGastos) VALUES (?,?,?,?)";
+            try(Connection c = ConexaoDB.conectar(); PreparedStatement stmt = c.prepareStatement(url)) {
+                stmt.setString(1, pessoa.getNome());
+                stmt.setString(2, pessoa.getCpf());
+                stmt.setBigDecimal(3, pessoa.getSalario());
+                stmt.setBigDecimal(4,pessoa.getMetaGastos());
+
+                stmt.executeUpdate();
+
+                System.out.println("====================");
+                System.out.println("Pessoa salva no BD");
+                System.out.println("====================");
+            } catch (Exception e) {
+                System.out.println("Erro ao salvar no banco de dados!");
+                e.printStackTrace();
+            }
         }
     }
 
