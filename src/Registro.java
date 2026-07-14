@@ -35,11 +35,10 @@ public class Registro {
        }
        }
 
-    public void registraDados(){
+    public void registraDados(int id_pessoa){
         try {
             Scanner sc = new Scanner(System.in);
-            System.out.print("Digite o nome do responsável pelo gasto: ");
-            String nome = sc.nextLine();
+
             System.out.print("Digite o valor gasto: ");
             BigDecimal valor = sc.nextBigDecimal();
             sc.nextLine();
@@ -56,7 +55,7 @@ public class Registro {
             System.out.println("REGISTRO SALVO!");
             System.out.println("=================");
 
-            Gasto gasto = new Gasto(nome, valor, finalide, forma, data);
+            Gasto gasto = new Gasto(id_pessoa, valor, finalide, forma, data);
             listaGastos.add(gasto);
             salvarNobanco(gasto);
         }catch(Exception e){
@@ -73,10 +72,10 @@ public class Registro {
     }
 
     public void salvarNobanco(Gasto gasto){
-        String url = "INSERT INTO Gastos (pessoa, valor, finalidade, forma, dia) VALUES (?,?,?,?,?)";
+        String url = "INSERT INTO Gastos (id_pessoa, valor, finalidade, forma, dia) VALUES (?,?,?,?,?)";
 
         try(Connection c = ConexaoDB.conectar(); PreparedStatement stmt = c.prepareStatement(url)) {
-            stmt.setString(1, gasto.getPessoa());
+            stmt.setInt(1, gasto.getId_pessoa());
             stmt.setBigDecimal(2, gasto.getValor());
             stmt.setString(3, gasto.getFinalidade());
             stmt.setString(4, gasto.getForma());

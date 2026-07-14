@@ -3,7 +3,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 public class Gasto {
-    private String pessoa;
+    private int id_pessoa;
     private BigDecimal valor;
     private String finalidade;
     private String forma;
@@ -18,20 +18,16 @@ public class Gasto {
         this.forma = forma;
     }
 
-    public Gasto(String pessoa, BigDecimal valor, String finalidade, String forma, LocalDate dia) {
-        this.pessoa = pessoa;
+    public Gasto(int id_pessoa, BigDecimal valor, String finalidade, String forma, LocalDate dia) {
+        this.id_pessoa = id_pessoa;
         this.valor = valor;
         this.finalidade = finalidade;
         this.forma = forma;
         this.dia = dia;
     }
 
-    public String getPessoa() {
-        return pessoa;
-    }
-
-    public void setPessoa(String pessoa) {
-        this.pessoa = pessoa;
+    public int getId_pessoa() {
+        return id_pessoa;
     }
 
     public String getFinalidade() {
@@ -62,7 +58,7 @@ public class Gasto {
     public String toString() {
         DateTimeFormatter formatador = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
-        return "Responsável: " + this.pessoa +
+        return "Responsável: " + this.id_pessoa +
                 " | Valor: R$ " + this.valor +
                 " | Finalidade: " + this.finalidade +
                 " | Forma de pagamento: " + this.forma +
