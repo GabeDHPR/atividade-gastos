@@ -9,8 +9,11 @@ public class Main {
 
        do {
            Scanner sc = new Scanner(System.in);
-           System.out.println("Qual operação deseja realizar?");
+           System.out.println("===============================");
+           System.out.println("\t\tMENU INICIAL!");
+           System.out.println("===============================");
            System.out.println("[0] - Cadastrar pessoa\n[1] - Inserir gasto\n[2] - Realizar consultas\n[3] - Sair");
+           System.out.print("Digite a opção desejada: ");
            op = sc.nextInt();
 
            switch (op) {
@@ -27,16 +30,35 @@ public class Main {
                      }
                    break;
                case 2:
-                   System.out.println("Qual dado consultar?");
-                   System.out.println("[1] - Valor gasto no mês \n[2] - Valor em cada finalidade\n[3] - Valor por formas de pagamento\n[4] - % do sálario e meta  \n[5] - Valor acumulado ");
+                   System.out.println("\n\n=========================================");
+                   System.out.println("\t\tMENU DE CONSULTAS");
+                   buscar.somaValor();
+                   System.out.println("=========================================\n");
+                   sc.nextLine();
 
+                   System.out.println("====================================================================");
+                   System.out.print("Digite o nome do responsável pelos gastos que deseja filtrar: ");
+                   String user = sc.nextLine();
+                   int id = buscar.buscarPessoa(user);
+                   if(id!=-1) {
+                       System.out.println("====================================================================");
+                       int opDado;
+                       do {
+                           System.out.println("Filtar por:");
+                           System.out.println("[1] - Periodo \n[2] - Por finalidade\n[3] - Por formas de pagamento\n[4] - Por % do sálario e meta  \n[5] - Por valor acumulado \n[6] - sair");
+                           System.out.print("Digite sua opção: ");
 
-                   int opDado = sc.nextInt();
+                           opDado = sc.nextInt();
+                           sc.nextLine();
 
-                   switch (opDado){
-                       case 1:
-                           buscar.somaValor();
-                           break;
+                           switch (opDado) {
+                               case 1:
+                                   buscar.filtraPorPeriodo(id);
+                                   break;
+                               case 2:
+                                   buscar.filtraPorFinalidade(id);
+                           }
+                       }while (opDado!=6);
                    }
 
                    break;
