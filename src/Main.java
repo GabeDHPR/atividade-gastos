@@ -1,3 +1,4 @@
+import java.math.BigDecimal;
 import java.util.Scanner;
 
 public class Main {
@@ -44,7 +45,7 @@ public class Main {
                        System.out.println("====================================================================");
                        int opDado;
                        do {
-                           System.out.println("Filtar por:");
+                           System.out.println("\nFiltar por:");
                            System.out.println("[1] - Periodo \n[2] - Por finalidade\n[3] - Por formas de pagamento\n[4] - Por % do sálario e meta  \n[5] - Por valor acumulado \n[6] - sair");
                            System.out.print("Digite sua opção: ");
 
@@ -53,13 +54,44 @@ public class Main {
 
                            switch (opDado) {
                                case 1:
-                                   buscar.filtraPorPeriodo(id);
+                                   System.out.print("Digite a quantidade de dias que deseja filtrar: ");
+                                   int dias = sc.nextInt();
+                                   sc.nextLine();
+                                   BigDecimal valor = buscar.filtraPorPeriodo(id, dias);
+                                   System.out.println("Total de gastos registrados no periodo de " + dias + " dias : R$" + valor);
+                                   if(valor!=null){
+                                       System.out.println("Exibir todos os gastos do periodo? [1] - SIM [2] - NÃO");
+                                       int resposta = sc.nextInt();
+                                       if(resposta == 1){
+                                           buscar.Exibindo(id, dias);
+                                       }
+                                   }
                                    break;
                                case 2:
-                                   buscar.filtraPorFinalidade(id);
+                                   System.out.print("Digite a finalidade do gasto: ");
+                                   String finalidade = sc.nextLine();
+                                   valor = buscar.filtraPorFinalidade(id, finalidade);
+                                   if(valor!=null){
+                                       System.out.println("Exibir todos os gastos registrados nessa finalidade? [1] - SIM [2] - NÃO");
+                                       int resposta = sc.nextInt();
+                                       if(resposta == 1){
+                                           buscar.TodasFinalidades(id, finalidade);
+                                       }
+                                   }
+
                                    break;
                                case 3:
-                                   buscar.filtraPorPagamento(id);
+                                   System.out.print("Digite a forma de pagamento: ");
+                                   String formaPagamento = sc.nextLine();
+                                   valor = buscar.filtraPorPagamento(id, formaPagamento);
+
+                                   if(valor!=null){
+                                       System.out.println("Exibir todos os gastos dessa forma de pagamento? [1] - SIM [2] - NÃO");
+                                       int resposta = sc.nextInt();
+                                       if(resposta == 1){
+                                           buscar.TodasFormas(id, formaPagamento);
+                                       }
+                                   }
                                    break;
                                case 4:
                                    buscar.filtraPorPercentual(id);
