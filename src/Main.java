@@ -57,6 +57,21 @@ public class Main {
                                    break;
                                case 2:
                                    buscar.filtraPorFinalidade(id);
+                                   break;
+                               case 3:
+                                   buscar.filtraPorPagamento(id);
+                                   break;
+                               case 4:
+                                   buscar.filtraPorPercentual(id);
+                                   break;
+                               case 5:
+                                   buscar.filtraPorTotalIndividual(id);
+                                   break;
+                               case 6:
+                                   System.out.println("SAINDO!....");
+                                   break;
+                               default:
+                                   System.out.println("Digite uma opção valida seu besta!");
                            }
                        }while (opDado!=6);
                    }
