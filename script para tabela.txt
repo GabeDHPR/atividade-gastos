@@ -1,0 +1,8 @@
+CREATE TABLE financeiro (
+pessoa VARCHAR(100) NOT NULL,
+valor NUMERIC(10,2)NOT NULL,
+finalidade VARCHAR(200)NOT NULL,
+forma VARCHAR(100)NOT NULL,
+dia DATE NOT NULL,
+id_gasto serial primary key
+);

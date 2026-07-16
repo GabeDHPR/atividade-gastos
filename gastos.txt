@@ -1,0 +1,12 @@
+Nome      |   Valor     | Tipo
+---------------------------------------
+Gabriel   |	360.00  |Terapia
+Gabriel   |	200.00  |Delivery
+Gabriel   |	80.00   |Tosa/Banho pets
+Gabriel   |	100.00  |Transporte
+Gabriel   |	60.00	|Lazer
+Wesley	  |	25.00	|Lazer 
+Wesley	  |	30.00	|Lanche
+Wesley	  |	40.00	|Mercado
+Wesley	  |	45.00	|Renner 
+Wesley	  |	55.00	|Streaming
